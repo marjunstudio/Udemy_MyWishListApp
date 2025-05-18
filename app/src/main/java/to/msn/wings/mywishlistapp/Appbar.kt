@@ -19,6 +19,7 @@ fun AppBarView(
     title: String,
     onBackClicked: () -> Unit = {}
 ) {
+    // ナビゲーションアイコンは特定の文字列を含む場合表示しない
     val navigationIcon: (@Composable () -> Unit)? =
         if (!title.contains("WishList")) {
             {
