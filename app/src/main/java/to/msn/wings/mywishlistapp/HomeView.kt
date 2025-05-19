@@ -20,11 +20,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import to.msn.wings.mywishlistapp.data.DummyWish
 import to.msn.wings.mywishlistapp.data.Wish
 
 @Composable
-fun HomeView() {
+fun HomeView(
+    navController: NavController,
+    viewModel: WishViewModel
+) {
     val context = LocalContext.current
     Scaffold(
         modifier = Modifier.padding(top = 8.dp),
@@ -36,11 +40,9 @@ fun HomeView() {
                 modifier = Modifier.padding(all = 20.dp),
                 contentColor = Color.White,
                 backgroundColor = Color.Black,
-                onClick = {
-                    Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
-                }) {
+                onClick = { navController.navigate(Screen.AddScreen.route) }
+            ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
-
             }
         }
     ) {
