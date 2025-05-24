@@ -15,13 +15,13 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import to.msn.wings.mywishlistapp.data.DummyWish
 import to.msn.wings.mywishlistapp.data.Wish
 
 @Composable
@@ -46,13 +46,12 @@ fun HomeView(
             }
         }
     ) {
+        val wishlist = viewModel.getAllWishes.collectAsState(initial = listOf())
         LazyColumn(modifier = Modifier
             .fillMaxSize()
             .padding(it)){
-            items(DummyWish.wishList) {
-                wish -> WishItem(wish = wish) {
-
-            }
+            items(wishlist.value) {
+                wish -> WishItem(wish = wish) {}
             }
         }
     }

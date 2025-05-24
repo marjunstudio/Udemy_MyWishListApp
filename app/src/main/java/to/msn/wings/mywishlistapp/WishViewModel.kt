@@ -12,7 +12,7 @@ import to.msn.wings.mywishlistapp.data.Wish
 import to.msn.wings.mywishlistapp.data.WishRepository
 
 class WishViewModel(
-    private val wishRepository: WishRepository
+    private val wishRepository: WishRepository = Graph.wishRepository
 ): ViewModel() {
     var wishTitleState by mutableStateOf("")
     var wishDescriptionState by mutableStateOf("")
