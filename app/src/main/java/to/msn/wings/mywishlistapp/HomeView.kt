@@ -32,15 +32,16 @@ fun HomeView(
     val context = LocalContext.current
     Scaffold(
         modifier = Modifier.padding(top = 8.dp),
-        topBar = { AppBarView(title = "WishList", {
-            Toast.makeText(context, "Button Clicked", Toast.LENGTH_LONG).show()
-        })},
+        topBar = { AppBarView(title = "WishList")},
         floatingActionButton = {
             FloatingActionButton(
                 modifier = Modifier.padding(all = 20.dp),
                 contentColor = Color.White,
                 backgroundColor = Color.Black,
-                onClick = { navController.navigate(Screen.AddScreen.route) }
+                onClick = {
+                    Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
+                    navController.navigate(Screen.AddScreen.route +"/0L")
+                }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
@@ -51,7 +52,10 @@ fun HomeView(
             .fillMaxSize()
             .padding(it)){
             items(wishlist.value) {
-                wish -> WishItem(wish = wish) {}
+                wish -> WishItem(wish = wish) {
+                    val id = wish.id
+                    navController.navigate(Screen.AddScreen.route + "/$id")
+                }
             }
         }
     }
